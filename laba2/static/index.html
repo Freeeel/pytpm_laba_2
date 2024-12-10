@@ -190,7 +190,7 @@
                     alert('Login successful!');
                     document.getElementById('login-section').classList.add('hidden');
                     document.getElementById('user-management').classList.remove('hidden');
-                    fetchUsers();
+                    newUsers();
                 } else {
                     alert('Error logging in');
                 }
@@ -199,7 +199,7 @@
             }
         }
 
-        async function fetchUsers() {
+        async function newUsers() {
             try {
                 const response = await fetch('/users/', {
                     headers: {
@@ -245,7 +245,7 @@
 
                 if (response.ok) {
                     alert('User created successfully');
-                    fetchUsers();
+                    newUsers();
                 } else {
                     alert('Error creating user');
                 }
@@ -266,7 +266,7 @@
 
                     if (response.ok) {
                         alert('User deleted successfully');
-                        fetchUsers();
+                        newUsers();
                     } else {
                         alert('Error deleting user');
                     }
@@ -301,7 +301,7 @@
 
                 if (response.ok) {
                     alert('User updated successfully');
-                    fetchUsers();
+                    newUsers();
                     document.getElementById('update-user-section').classList.add('hidden');
                 } else {
                     alert('Error updating user');
