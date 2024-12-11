@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authentication</title>
+    <title>Authentication and User Management</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #343a40;
+            background-color: #e0f7fa; /* Light blue background */
+            color: #004d40; /* Dark teal text color */
             margin: 0;
             padding: 0;
         }
@@ -17,48 +17,51 @@
             max-width: 600px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #ffffff;
+            background-color: #ffffff; /* White background for the container */
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        h2 {
+        h2, h3 {
             text-align: center;
-            color: #007bff;
+            color: #00796b; /* Darker teal for headers */
         }
 
         .form-group {
             margin-bottom: 15px;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+        .form-inline {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
         }
 
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group input[type="password"],
-        .form-group select {
-            width: 100%;
+        .form-inline label {
+            margin-right: 10px;
+            white-space: nowrap;
+            width: 100px; /* Fixed width for alignment */
+        }
+
+        .form-inline input {
+            flex: 1;
             padding: 10px;
-            box-sizing: border-box;
-            border: 1px solid #ced4da;
+            border: 1px solid #b2dfdb; /* Light teal border */
             border-radius: 5px;
         }
 
         .form-group button {
             padding: 10px 15px;
-            background-color: #007bff;
+            background-color: #388e3c; /* Dark green background for buttons */
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            width: 100%;
         }
 
         .form-group button:hover {
-            background-color: #0056b3;
+            background-color: #2e7d32; /* Darker green on hover */
         }
 
         .user-list {
@@ -73,12 +76,8 @@
         .user-list th,
         .user-list td {
             padding: 10px;
-            border: 1px solid #dee2e6;
+            border: 1px solid #b2dfdb; /* Light teal border for table cells */
             text-align: left;
-        }
-
-        .user-list th {
-            background-color: #f1f3f5;
         }
 
         .hidden {
@@ -88,43 +87,46 @@
 </head>
 <body>
     <div class="container">
-        <h2>FastApi</h2>
-
+        <!-- Login Page -->
         <div id="login-section">
-            <h3>Login</h3>
+            <h2>Authentication</h2>
             <div class="form-group">
-                <label for="login-username">Username</label>
-                <input type="text" id="login-username" required>
-            </div>
-            <div class="form-group">
-                <label for="login-password">Password</label>
-                <input type="password" id="login-password" required>
-            </div>
-            <div class="form-group">
-                <button type="button" onclick="login()">Login</button>
+                <div class="form-inline">
+                    <label for="login-username">Username:</label>
+                    <input type="text" id="login-username" required>
+                </div>
+                <div class="form-inline">
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <div class="form-group">
+                    <button type="button" onclick="login()">Login</button>
+                </div>
             </div>
         </div>
 
+        <!-- User Management Page -->
         <div id="user-management" class="hidden">
+            <h2>User Management</h2>
             <h3>Create User</h3>
-            <div class="form-group">
-                <label for="create-username">Username</label>
+            <div class="form-inline">
+                <label for="create-username">Username:</label>
                 <input type="text" id="create-username" required>
             </div>
-            <div class="form-group">
-                <label for="create-email">Email</label>
+            <div class="form-inline">
+                <label for="create-email">Email:</label>
                 <input type="email" id="create-email" required>
             </div>
-            <div class="form-group">
-                <label for="create-password">Password</label>
+            <div class="form-inline">
+                <label for="create-password">Password:</label>
                 <input type="password" id="create-password" required>
             </div>
             <div class="form-group">
                 <button type="button" onclick="createUser()">Create User</button>
             </div>
 
+            <h3>User List</h3>
             <div class="user-list">
-                <h3>User List</h3>
                 <table>
                     <thead>
                         <tr>
@@ -141,27 +143,26 @@
 
             <div id="update-user-section" class="hidden">
                 <h3>Update User</h3>
-                <div class="form-group">
-                    <label for="update-userid">User ID</label>
+                <div class="form-inline">
+                    <label for="update-userid">ID:</label>
                     <input type="text" id="update-userid" disabled>
                 </div>
-                <div class="form-group">
-                    <label for="update-username">Username</label>
+                <div class="form-inline">
+                    <label for="update-username">Username:</label>
                     <input type="text" id="update-username" required>
                 </div>
-                <div class="form-group">
-                    <label for="update-email">Email</label>
+                <div class="form-inline">
+                    <label for="update-email">Email:</label>
                     <input type="email" id="update-email" required>
                 </div>
-                <div class="form-group">
-                    <label for="update-password">Password</label>
+                <div class="form-inline">
+                    <label for="update-password">Password:</label>
                     <input type="password" id="update-password">
                 </div>
                 <div class="form-group">
                     <button type="button" onclick="updateUser()">Update User</button>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -190,16 +191,16 @@
                     alert('Login successful!');
                     document.getElementById('login-section').classList.add('hidden');
                     document.getElementById('user-management').classList.remove('hidden');
-                    newUsers();
+                    loadUsers();
                 } else {
-                    alert('Error logging in');
+                    alert('Login failed');
                 }
             } catch (error) {
                 console.error('Error during login:', error);
             }
         }
 
-        async function newUsers() {
+        async function loadUsers() {
             try {
                 const response = await fetch('/users/', {
                     headers: {
@@ -224,7 +225,7 @@
                     userListBody.appendChild(row);
                 });
             } catch (error) {
-                console.error('Error fetching users:', error);
+                console.error('Error loading users:', error);
             }
         }
 
@@ -244,8 +245,8 @@
                 });
 
                 if (response.ok) {
-                    alert('User created successfully');
-                    newUsers();
+                    alert('User successfully created');
+                    loadUsers();
                 } else {
                     alert('Error creating user');
                 }
@@ -265,8 +266,8 @@
                     });
 
                     if (response.ok) {
-                        alert('User deleted successfully');
-                        newUsers();
+                        alert('User successfully deleted');
+                        loadUsers();
                     } else {
                         alert('Error deleting user');
                     }
@@ -300,8 +301,8 @@
                 });
 
                 if (response.ok) {
-                    alert('User updated successfully');
-                    newUsers();
+                    alert('User successfully updated');
+                    loadUsers();
                     document.getElementById('update-user-section').classList.add('hidden');
                 } else {
                     alert('Error updating user');
